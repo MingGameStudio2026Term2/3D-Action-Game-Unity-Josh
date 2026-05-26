@@ -1014,11 +1014,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1507090231841080, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1584441913468252, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1865598692286518, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
       propertyPath: m_Name
@@ -1090,6 +1090,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1865598692286518, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884374999}
+    - targetCorrespondingSourceObject: {fileID: 1865598692286518, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1884375002}
   m_SourcePrefab: {fileID: 100100000, guid: c07ec1075acf8bc42a7f0ef5e239291d, type: 3}
 --- !u!1 &963194225
 GameObject:
@@ -1151,7 +1154,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 130.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1355,11 +1358,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObjectName: PolygonSyntyCharacter
-  followDistance: 3
+  followDistance: 1
+  leftRightOffset: 2
   height: 2
   sineAmplitude: 1
   sineFrequency: 1
   followSpeed: 10
+  bulletPrefab: {fileID: 8686933507242043752, guid: 5081770c2b5b8914ab5e3936738301ae, type: 3}
+  shootInterval: 1
+  bulletSpeed: 50
 --- !u!65 &1457478859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1891,6 +1898,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCube: {fileID: 1754479923}
+  attackDistance: 1.5
+  attackInterval: 2
+--- !u!136 &1884375002
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884374995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.33429956
+  m_Height: 2.0057478
+  m_Direction: 1
+  m_Center: {x: 0.0022697449, y: 1.0000098, z: 0}
 --- !u!1 &1922782476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2293,14 @@ PrefabInstance:
     - target: {fileID: 5401577484820757812, guid: 489d293105853884c9f804a1ef35eb8b, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537649746104174989, guid: 489d293105853884c9f804a1ef35eb8b, type: 3}
+      propertyPath: _isLockedOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537649746104174989, guid: 489d293105853884c9f804a1ef35eb8b, type: 3}
+      propertyPath: _cameraDistance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
