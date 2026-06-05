@@ -11,6 +11,8 @@ public class DroneController : MonoBehaviour
     public float sineAmplitude = 1f; // Amplitude of sine wave
     public float sineFrequency = 1f; // Frequency of sine wave
     public float followSpeed = 5f; // How fast the drone follows the player
+    [Header("Rotation Settings")]
+    public float yRotationOffset = 0f; // Y-axis rotation offset for model alignment
 
     [Header("Shooting Settings")]
     public GameObject bulletPrefab; // Assign your Bullet prefab in the Inspector
@@ -50,6 +52,10 @@ public class DroneController : MonoBehaviour
         // Smooth follow
         transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
 
+        // Make the drone face the same direction as the player, with Y rotation offset
+        Quaternion targetRot = Quaternion.Euler(-90f, player.eulerAngles.y + yRotationOffset, 0f);
+        transform.rotation = targetRot;
+
         // Shooting logic
         TryShootAtZombie();
     }
@@ -68,6 +74,8 @@ public class DroneController : MonoBehaviour
         float minDist = Mathf.Infinity;
         foreach (var zombie in zombies)
         {
+            if (zombie == null || zombie.currentHealth <= 0f) continue;
+
             float dist = Vector3.Distance(transform.position, zombie.transform.position);
             if (dist < minDist)
             {
