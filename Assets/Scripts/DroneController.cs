@@ -17,6 +17,7 @@ public class DroneController : MonoBehaviour
     [Header("Shooting Settings")]
     public GameObject bulletPrefab; // Assign your Bullet prefab in the Inspector
     public float shootInterval = 1.5f; // Interval between shots (seconds)
+    public float attackRange = 15f; // Max range to shoot zombies
     public float bulletSpeed = 20f; // Speed of the bullet
     private float lastShootTime = -Mathf.Infinity;
 
@@ -84,7 +85,7 @@ public class DroneController : MonoBehaviour
             }
         }
 
-        if (closestZombie != null)
+        if (closestZombie != null && minDist <= attackRange)
         {
             ShootAt(closestZombie);
             lastShootTime = Time.time;
@@ -96,6 +97,11 @@ public class DroneController : MonoBehaviour
         // Instantiate bullet at drone's position, facing the target
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Vector3 dir = (target.position + Vector3.up * 1f - transform.position).normalized;
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        if (bulletController != null)
+        {
+            bulletController.SetTarget(target, bulletSpeed);
+        }
         // If the bullet has a Rigidbody, set its velocity
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
